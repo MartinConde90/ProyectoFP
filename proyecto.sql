@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-04-2023 a las 13:34:01
+-- Tiempo de generación: 20-04-2023 a las 01:58:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -48,7 +48,8 @@ INSERT INTO `comentarios` (`id_comentario`, `id_post_comentario`, `autor_comenta
 (41, 10, 'Martin', 'martin@gmail.com', 'dvavasvasv', 'Aprobado', '2023-04-18'),
 (42, 9, 'Martin', 'martin@gmail.com', 'fdsf', 'Aprobado', '2023-04-18'),
 (43, 1, 'martin', 'martin@gmail.com', 'probando comentarios', 'Aprobado', '2023-04-19'),
-(44, 1, 'martin', 'martin@gmail.com', 'sadasdasdasd', 'Aprobado', '2023-04-19');
+(44, 1, 'martin', 'martin@gmail.com', 'sadasdasdasd', 'Aprobado', '2023-04-19'),
+(45, 20, 'martin', 'martin@gmail.com', 'hfshhfdhfdh', 'Aprobado', '2023-04-20');
 
 -- --------------------------------------------------------
 
@@ -62,21 +63,22 @@ CREATE TABLE `posts` (
   `estatus` varchar(255) NOT NULL,
   `imagen` text NOT NULL,
   `contenido` text NOT NULL,
-  `fecha` datetime NOT NULL,
-  `id_usuario` int(3) NOT NULL
+  `fecha` date NOT NULL,
+  `post_user` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `posts`
 --
 
-INSERT INTO `posts` (`id_post`, `nombre`, `estatus`, `imagen`, `contenido`, `fecha`, `id_usuario`) VALUES
-(1, 'Probando', 'Published', 'bebe.jpeg', 'J. R. R. Tolkien planned The Lord of the Rings as a sequel to his earlier novel The Hobbit, but it ended up becoming a much more far-reaching and lengthy story which, written in stages between 1937 and 1949, was first published in the UK. between 1954 and 1955 in three volumes. Since then it has been reprinted numerous times and translated into many languages,2 becoming one of the most popular works of 20th century literature.3 In addition, it has been adapted several times for radio, theater and film. , mainly highlighting the film trilogy created by the New Zealand filmmaker Peter JacksonJ. R. R. Tolkien planned The Lord of the Rings as a sequel to his earlier novel The Hobbit, but it ended up becoming a much more far-reaching and lengthy story which, written in stages between 1937 and 1949, was first published in the UK. between 1954 and 1955 in three volumes. Since then it has been reprinted numerous times and translated into many languages,2 becoming one of the most popular works of 20th century literature.3 In addition, it has been adapted several times for radio, theater and film. , mainly highlighting the film trilogy created by the New Zealand filmmaker Peter Jacksonsdfsdfsdfsdfsdfsdfsdffsd', '2017-04-23 00:00:00', 1),
-(7, 'doval probando a subir algo', 'Published', 'IMG_20191215_031959.jpg', 'eeeeeeeeeeeeeeeeeeeee', '2023-04-17 22:59:22', 2),
-(8, 'paco rerse', 'Draft', 'IMG_20170428_012211.jpg', '444444', '2023-04-17 23:06:38', 1),
-(9, 'bsbsdb', 'Published', 'WhatsApp Image 2023-04-14 at 14.44.43.jpeg', 'sdbsdb', '2023-04-18 19:28:48', 1),
-(10, 'bdsbsdb', 'Published', 'titulobach.png', 'sdbdsbsdb', '2023-04-18 19:28:57', 1),
-(11, 'xzvxzvxv', 'Published', 'a7PXgZl2_700w_0.jpg', 'bbbb', '2023-04-18 19:29:07', 1);
+INSERT INTO `posts` (`id_post`, `nombre`, `estatus`, `imagen`, `contenido`, `fecha`, `post_user`) VALUES
+(19, 'Brandoncete', 'Published', 'IMG_20170428_012211.jpg', 'Brandon pidiendo comida', '2023-04-20', 'martin'),
+(20, 'Perro volador', 'Draft', 'WhatsApp Image 2021-09-11 at 13.51.48.jpeg', 'Melon volador', '2023-04-20', 'martin'),
+(21, 'Wallpaper medieval', 'Published', 'FjO95DeXwBUpyJC.jpg', 'Fondo de pantalla', '2023-04-20', 'martin'),
+(22, 'Homer', 'Draft', 'IMG_20191215_031959.jpg', 'Homer volador', '2023-04-20', 'martin'),
+(23, 'The Boys', 'Published', 'a7PXgZl2_700w_0.jpg', 'Carnicero', '2023-04-20', 'martin'),
+(24, 'Carnaval', 'Draft', 'WhatsApp Image 2023-02-19 at 04.43.24 (2).jpeg', 'Star wars de carnaval', '2023-04-20', 'martin'),
+(25, 'Fondo psicodelico', 'Published', 'ElDeUdCW0AAnLNo.jpg', 'Fondo de pantalla', '2023-04-20', 'Muriel');
 
 -- --------------------------------------------------------
 
@@ -97,8 +99,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `email`, `pass`, `rol`) VALUES
-(1, 'martin', 'martin@gmail.com', '$2y$10$2/WYwveCRMDH4Zxt4RYg9OW0sMlsHf3yoRDGJc2FyW2yYsGCgvNPe', 1),
-(2, 'Muriel', 'muriel@gmail.com', '$2y$10$gCQEwzOCu6kDC54v7COTcO.5vTZwUt57vCJ5OnuzKl5iafUDglq5y', 0);
+(1, 'Martin', 'martin@gmail.com', '$2y$10$2/WYwveCRMDH4Zxt4RYg9OW0sMlsHf3yoRDGJc2FyW2yYsGCgvNPe', 1),
+(4, 'Muriel', 'muriel@gmail.com', '$2y$10$Aac1Fpk0VBuV2l/btf6RPuhQwKfAdEVkE/sjCL6Z0CEnMaIwV8VTa', 0);
 
 --
 -- Índices para tablas volcadas
@@ -131,19 +133,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_comentario` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_post` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
