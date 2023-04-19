@@ -8,27 +8,27 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 class EventosMysql extends Evento{
 
     function guardar(){
-        $stm = BDMySql::getConexion()->prepare("INSERT into eventos (nombre, fecha_inicio, fecha_fin, id_usuario) values(:nombre,:fecha_inicio,:fecha_fin,:id_usuario)"); 
-                $stm->execute([":nombre"=>$this->getNombre(),":fecha_inicio"=>$this->getFecha_inicio()->format('Y-m-d H:i:s'),":fecha_fin"=>$this->getFecha_fin()->format('Y-m-d H:i:s'),":id_usuario"=>$this->getId_usuario()]);
+        $stm = BDMySql::getConexion()->prepare("INSERT into posts (nombre, estatus, imagen,contenido,fecha, id_usuario) values(:nombre,:estatus,:imagen,:contenido,:fecha,:id_usuario)"); 
+                $stm->execute([":nombre"=>$this->getTitulo(),":estatus"=>$this->getStatus(),":imagen"=>$this->getImagen(),":contenido"=>$this->getContenido(),":fecha"=>$this->getFecha(),":id_usuario"=>$this->getId_usuario()]);
     }
 
     static function listar(){
-        $stm = BDMySql::getConexion()->prepare("SELECT * from eventos"); 
+        $stm = BDMySql::getConexion()->prepare("SELECT * from posts"); 
         $stm->execute();
-        $eventos = [];
-        while (($evento = $stm->fetch())!=null) {
-            $eventos[] =  new EventosMysql($evento["nombre"],new DateTime($evento["fecha_inicio"]),new DateTime($evento["fecha_fin"]),$evento["id_usuario"],$evento["id_evento"]);
+        $posts = [];
+        while (($post = $stm->fetch())!=null) {
+            $posts[] =  new EventosMysql($post["nombre"],$post["estatus"],$post["imagen"],$post["contenido"],$post["fecha"],$post["id_usuario"],$post["id_post"]);
         }
-        return $eventos;
+        return $posts;
     }
 
     function modificar(){
-        $stm = BDMySql::getConexion()->prepare("UPDATE eventos SET nombre = :nombre , fecha_inicio = :fecha_inicio, fecha_fin= :fecha_fin where id_evento=:id");
-        $stm->execute([":nombre"=>$this->getNombre(),":fecha_inicio"=>$this->getFecha_inicio()->format('Y-m-d H:i:s'),":fecha_fin"=>$this->getFecha_fin()->format('Y-m-d H:i:s'),":id"=>$this->getId_evento()]);
+        $stm = BDMySql::getConexion()->prepare("UPDATE posts SET nombre = :nombre , estatus = :estatus, imagen = :imagen, contenido = :contenido, fecha = :fecha where id_post=:id");
+        $stm->execute([":nombre"=>$this->getTitulo(),":estatus"=>$this->getStatus(),":imagen"=>$this->getImagen(),":contenido"=>$this->getContenido(),":fecha"=>$this->getFecha(),":id"=>$this->getId_post()]);
     }
 
     static function eliminar($id){
-        $stm = BDMySql::getConexion()->prepare("DELETE from eventos where id_evento = :id ");
+        $stm = BDMySql::getConexion()->prepare("DELETE from posts where id_post = :id ");
         $stm->execute([":id"=>$id]);
     }
 

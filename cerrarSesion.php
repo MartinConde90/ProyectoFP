@@ -5,4 +5,4 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 } 
 
 session_destroy();
-header("location:index.php");
+header("location:/ProyectoFP/index.php");

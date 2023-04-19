@@ -1,0 +1,214 @@
+
+body{
+    
+    background-size: cover;
+}
+.contenedor{
+    width: 520px;
+    margin: 0 auto;
+    background-color: #494a1c;
+    margin-top: 10%;
+}
+.modif{
+    width: 500px;
+    margin: 0 auto;
+    background-color: #1c2b4a;
+    margin-top: 10%;
+}
+.modif>form>label{
+    color: white;
+    width: 50px;
+}
+label{
+    color: white;
+}
+
+
+.boton, .registrar{
+    width: 100%;
+    background-color: #00cc66;
+    border-radius: 2px;
+    border-style: none;
+    padding: 10px;
+    margin-bottom: 10px; 
+    
+}
+.boton>a{
+    text-decoration:none;
+    color: white;
+    font-size: 25px;
+}
+.mensaje{
+    text-align: center;
+    background-color: red;
+    font-weight: bold;
+}
+
+
+a {
+    text-decoration:none;
+    color: #337ab7 !important;
+}
+
+.registrar{
+    width: 30%;
+    margin: 0%;
+    font-size: 40px;
+}
+
+
+.registrar{
+    text-align: center;
+  
+}
+
+.cerrar{
+    float: right;
+}
+
+html,
+body,
+.intro {
+  height: 100%;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mask-custom {
+    background-color: red;
+  background: rgba(24, 24, 16, .2) !important;
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+.formulario>label{
+    color: white;
+}
+h1 {
+    font-size: 4em;
+    text-shadow: 0px 0px 30px black;
+    animation: neon 0.9s linear infinite;
+    color:white;
+    
+}
+
+@keyframes neon { 
+    0% {
+        text-shadow:  0 0 30px rgba(255,255,255,1) , 0 0 40px #eeff00  ;
+ 
+    }
+    100% {
+        text-shadow:  0 0 30px rgba(255,255,255,1)  , 0 0 100px rgb(5, 121, 255) ;
+    }
+}
+.intro h1 {
+    background-color: transparent;
+  }
+.btn-primary{
+    color: white !important;
+    margin-bottom: 35px;
+}
+footer{
+    margin-top: 20px;
+}
+
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    
+}
+img {
+  max-width: 100% !important;
+}
+
+.pager {
+    padding-left: 0;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none;
+  }
+  .pager li {
+    display: inline;
+  }
+  .pager li > a{
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+  }
+  .pager li > a:hover,
+  .pager li > a:focus {
+    text-decoration: none;
+    background-color: #eee;
+  }
+  .pager .next > a,
+  .pager .next > span {
+    float: right;
+  }
+  .pager .previous > a,
+  .pager .previous > span {
+    float: left;
+  }
+  .pager .disabled > a,
+  .pager .disabled > a:hover,
+  .pager .disabled > a:focus,
+  .pager .disabled > span {
+    color: #777;
+    cursor: not-allowed;
+    background-color: #fff;
+  }
+ .col-md-4{
+    position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: right;
+  width: 33.33333333%;
+ }
+ .col-md-8{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  max-width: 66.666667%;
+  float: left;
+ }
+
+ .well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+          width: 300px;
+}
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, .15);
+}
+.well-lg {
+  padding: 24px;
+  border-radius: 6px;
+}
+.well-sm {
+  padding: 9px;
+  border-radius: 3px;
+}
+.form-group{
+  width: 500px;
+}
+.coment{
+  width: 550px;
+}

@@ -4,16 +4,13 @@ if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();  
 } 
 
-if(!isset($_SESSION["id"])){
-    header("location:login.php");
-}
 $usuarios = UsuarioMysql::listar();
 
 include("../header.php");
 ?>
 
         <?php 
-        if($usuarios[$_SESSION["id"]]->getRol() == 1){
+        if($_SESSION["rol"] == 1){
             
     ?>
         <section class="intro">

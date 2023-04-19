@@ -6,9 +6,9 @@ class BDMySql{
     private static $bd;
 
     private function __construct(){
-        $conn = "mysql:host=127.0.0.1; dbname=cms";
-        $usuario = "cms";
-        $passw = "abc123.";
+        $conn = "mysql:host=127.0.0.1; dbname=proyecto";
+        $usuario = "root";
+        $passw = "";
         $this->conexion = new PDO($conn, $usuario, $passw);
         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

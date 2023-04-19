@@ -3,63 +3,40 @@
 abstract class Evento{
 
     public function __construct(
-        public $nombre=null,
-        public ?DateTime $fecha_inicio=null,
-        public ?DateTime $fecha_fin=null,
+        public $titulo=null,
+        public $status=null,
+        public $imagen=null,
+        public $contenido=null,
+        public $fecha=null,
         public $id_usuario=null,
-        public $id_evento=null
+        public $id_post=null
     )
     {
         /*if($this->id_evento == null){
             throw new Exception("El evento necesita un usuario asignado");
         }*/
-        if($this->fecha_fin==null && $this->fecha_inicio!= null){
-            $this->fecha_fin = clone $this->fecha_inicio;
-            $this->fecha_fin->modify("+ 1 hour");
-        }
+        
     }
 
-        public function getId_evento()
+        public function getId_post()
         {
-            return $this->id_evento;
+            return $this->id_post;
         }
  
-        public function setId_evento($id_evento)
+        public function setId_post($id_post)
         {
-            $this->id_evento = $id_evento;
+            $this->id_post = $id_post;
             return $this;
         }
  
-        public function getNombre()
+        public function getTitulo()
         {
-            return $this->nombre;
+            return $this->titulo;
         }
 
-        public function setNombre($nombre)
+        public function setTitulo($titulo)
         {
-            $this->nombre = $nombre;
-            return $this;
-        }
-
-        public function getFecha_inicio()
-        {
-            return $this->fecha_inicio;
-        }
-
-        public function setFecha_inicio($fecha_inicio)
-        {
-            $this->fecha_inicio = $fecha_inicio;
-            return $this;
-        }
- 
-        public function getFecha_fin()
-        {
-            return $this->fecha_fin;
-        }
-
-        public function setFecha_fin($fecha_fin)
-        {
-            $this->fecha_fin = $fecha_fin;
+            $this->titulo = $titulo;
             return $this;
         }
 
@@ -73,6 +50,52 @@ abstract class Evento{
             $this->id_usuario = $id_usuario;
             return $this;
         }
+ 
+        public function getStatus()
+        {
+                return $this->status;
+        }
 
+        public function setStatus($status)
+        {
+                $this->status = $status;
 
+                return $this;
+        }
+
+        public function getImagen()
+        {
+                return $this->imagen;
+        }
+
+        public function setImagen($imagen)
+        {
+                $this->imagen = $imagen;
+
+                return $this;
+        }
+
+        public function getContenido()
+        {
+                return $this->contenido;
+        }
+
+        public function setContenido($contenido)
+        {
+                $this->contenido = $contenido;
+
+                return $this;
+        }
+
+        public function getFecha()
+        {
+                return $this->fecha;
+        }
+
+        public function setFecha($fecha)
+        {
+                $this->fecha = $fecha;
+
+                return $this;
+        }
 }

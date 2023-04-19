@@ -1,12 +1,10 @@
 <?php
 require_once("usuario/UsuarioMysql.php");
+require_once("conexion/BDMySql.php");
 if(session_status() !== PHP_SESSION_ACTIVE){ 
     session_start();  
 } 
 
-if(!isset($_SESSION["id"])){
-    header("location:login.php");
-}
 $usuarios = UsuarioMysql::listar();
 ?>
 <!DOCTYPE html>
@@ -15,7 +13,7 @@ $usuarios = UsuarioMysql::listar();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../estilo.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/ProyectoFP/estilos.css" media="screen" />
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" 
@@ -38,11 +36,11 @@ $usuarios = UsuarioMysql::listar();
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="eventosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Eventos
+          Publicaciones
         </a>
         <div class="dropdown-menu" aria-labelledby="eventosDropdown">
-          <a class="dropdown-item text-dark" href="../mostrarDatos/agenda.php">Listar Eventos</a>
-          <a class="dropdown-item text-dark" href="../añadir/eventos.php">Añadir Usuarios</a>
+          <a class="dropdown-item text-dark" href="/ProyectoFP">Publicaciones</a>
+          <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/eventos.php">Añadir publicaciones</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -50,11 +48,10 @@ $usuarios = UsuarioMysql::listar();
           Usuarios
         </a>
         <div class="dropdown-menu text-dark" aria-labelledby="usuariosDropdown">
-          <a class="dropdown-item text-dark" href="../mostrarDatos/listarUsuarios.php">Listar Usuarios</a>
-          <a class="dropdown-item text-dark" href="../añadir/nuevoUsuario.php">Añadir Usuarios</a>
+          <a class="dropdown-item text-dark" href="/ProyectoFP/mostrarDatos/listarUsuarios.php">Listar Usuarios</a>
+          <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/nuevoUsuario.php">Añadir Usuarios</a>
         </div>
       </li>
     </ul>
-    <h3 class="mx-auto"> Usuario: <?= $usuarios[$_SESSION["id"]]->getNombre() ?></h3>
-    <button class="cerrar ml-auto" onclick="window.location.href = '../cerrarSesion.php';">Cerrar sesión</button>
+    
   </nav>

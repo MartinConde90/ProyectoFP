@@ -1,6 +1,4 @@
 <?php
-require_once("usuario/UsuarioMysql.php");
-require_once("conexion/BDMySql.php");
 $mensaje = "";
 if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();
@@ -17,6 +15,8 @@ if(session_status() !== PHP_SESSION_ACTIVE){
             if($usuario->comprobarValidarUsuario($correo,$passwd)){
                 $_SESSION["correo"] = $correo;
                 $_SESSION["id"] = $usuario->getId_usuario();
+                $_SESSION["nombre"] = $usuario->getNombre();
+                $_SESSION["rol"] = $usuario->getRol();
                 header("location:mostrarDatos/agenda.php");
                 exit();
             }else{
