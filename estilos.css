@@ -74,6 +74,7 @@ body,
 
 table td,
 table th {
+  color: #337ab7;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -209,6 +210,17 @@ img {
 .form-group{
   width: 500px;
 }
+.form-group>label{
+  color: #337ab7;
+}
 .coment{
   width: 550px;
+}
+.container>.addform{
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 50px;
+}
+.container>.table{
+  margin-top: 100px;
 }

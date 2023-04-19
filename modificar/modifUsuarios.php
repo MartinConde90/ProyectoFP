@@ -46,41 +46,35 @@ if ($_SERVER["REQUEST_METHOD"]== "POST"){
             header("location:../mostrarDatos/listarUsuarios.php");
 }
 include("../header.php");
+include ("../sidebar.php"); 
 ?>
 
-
-<section class="intro">
-  <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
-    <div class="mask d-flex justify-content-center align-items-center h-100">
-      <div class="container">
-            <div class="card mask-custom">
-
-              
-                  <h2>Introduce los nuevos datos del usuario</h2>
-                  <form class="d-flex justify-content-center align-items-start mx-auto" action="" method="post">
-                    <div class="form-group">
-                      <label class="text-light" style="margin-left:10px">Nombre de usuario</label>
-                      <input class="inpt form-control mx-2" style="width:200px" type="text" name="nombre" id="nombre" value="<?=$usuarioAmodif->getNombre();?>">    
-                    </div>
-                    <div class="form-group">
-                      <label class="text-light" style="margin-left:10px">EMAIL</label>
-                      <input class="inpt form-control mx-2" style="width:200px" type="email" name="correo" id="correo" value="<?=$usuarioAmodif->getCorreo()?>">
-                    </div>
-                    <div class="form-group">
-                      <label class="text-light" style="margin-left:10px">ROL</label>
-                      <input class="inpt form-control mx-2" style="width:200px" type="number" min="0" max="1" name="rol" id="rol" value="<?=$usuarioAmodif->getRol()?>">
-                    </div>
-                    <div class="form-group d-flex justify-content-start" style="margin-top:25px">
-                      <div>
-                        <input class="boton" type="submit" value="Modificar">
-                      </div>
-                    </div>
-                  </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      <div class="container">  
+          <form class="addform" action="" method="post" enctype="multipart/form-data">
+          <h2>Nuevos datos del usuario</h2>
+            <div class="form-group">
+              <hr>
+              <label style="margin-left:10px">Nombre de usuario</label>
+              <input class="form-control"  type="text" name="nombre" id="nombre" value="<?=$usuarioAmodif->getNombre();?>">    
+              <hr>
+            </div>
+            <div class="form-group">
+              <label style="margin-left:10px">EMAIL</label>
+              <input class="form-control"  type="email" name="correo" id="correo" value="<?=$usuarioAmodif->getCorreo()?>">
+              <hr>
+            </div>
+            <div class="form-group">
+              <label style="margin-left:10px">ROL</label>
+              <input class="form-control"  type="number" min="0" max="1" name="rol" id="rol" value="<?=$usuarioAmodif->getRol()?>">
+              <hr>
+            </div>
+            <div class="form-group d-flex justify-content-start" style="margin-top:25px">
+              <div>
+                <input class="btn btn-primary" type="submit" value="Modificar">
+              </div>
+            </div>
+          </form>
+      
+        <?php include "../footer.php"; ?>
 </body>
 </html>

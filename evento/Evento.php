@@ -8,7 +8,7 @@ abstract class Evento{
         public $imagen=null,
         public $contenido=null,
         public $fecha=null,
-        public $id_usuario=null,
+        public $nombreUsuario=null,
         public $id_post=null
     )
     {
@@ -37,17 +37,6 @@ abstract class Evento{
         public function setTitulo($titulo)
         {
             $this->titulo = $titulo;
-            return $this;
-        }
-
-        public function getId_usuario()
-        {
-            return $this->id_usuario;
-        }
-
-        public function setId_usuario($id_usuario)
-        {
-            $this->id_usuario = $id_usuario;
             return $this;
         }
  
@@ -95,6 +84,18 @@ abstract class Evento{
         public function setFecha($fecha)
         {
                 $this->fecha = $fecha;
+
+                return $this;
+        }
+
+        public function getNombreUsuario()
+        {
+                return $this->nombreUsuario;
+        }
+
+        public function setNombreUsuario($nombreUsuario)
+        {
+                $this->nombreUsuario = $nombreUsuario;
 
                 return $this;
         }

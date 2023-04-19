@@ -24,39 +24,47 @@ if($_SERVER["REQUEST_METHOD"]== "POST" && isset($_POST["correo"])&& isset($_POST
     header("location:../mostrarDatos/listarUsuarios.php");
     exit();
 }
-include("../header.php")
+include("../header.php");
+include ("../sidebar.php"); 
 ?>
 
-    <section class="intro">
-    <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
-      <div class="mask d-flex align-items-center h-100">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div class="card mask-custom">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-borderless text-white mb-0">
-                    <div class="mensaje"><?=$mensaje?></div>
-                            <h2>Añadir usuario</h2>
-                            <form action="" method="post">
-                                <input class="inpt" type="text" name="nombre" id="nombre" required placeholder="Nombre de usuario">
-                                <input class="inpt" type="email" name="correo" id="correo" required placeholder="Correo de usuario">
-                                <input class="inpt" type="password" name="password" id="password" required placeholder="Contraseña">
-                                <input class="inpt" type="number" min="0" max="1" name="rol" id="rol" required>
-                                <input class="boton" type="submit" value="Registrar">    
-                            </form>
-                        </div>
-                    </table>
+<div class="container">
+        
+                
+                <form class="addform" action="" method="post">
+                <h2>Añadir usuario</h2>
+                  <div class="form-group">
+                    <hr>
+                    <label for="title">Nombre de usuario</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" required placeholder="Nombre de usuario">
+                    <hr>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-   
+
+                  <div class="form-group">
+                    <label for="title">Correo electrónico</label>
+                    <input class="form-control" type="email" name="correo" id="correo" required placeholder="Correo de usuario">
+                    <hr>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="title">Contraseña</label>
+                    <input class="form-control" type="password" name="password" id="password" required placeholder="Contraseña">
+                    <hr>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="title">Rol del usuario</label>
+                    <select name="rol" id="rol">
+                        <option value="0">Subscriptor</option>
+                        <option value="1">Administrador</option>
+                    </select>
+                    <hr>
+                  </div>
+
+                  <input class="btn btn-primary" type="submit" value="Registrar">    
+                </form>
+            
+                    
+  <?php include "../footer.php"; ?>
 </body>
 </html>

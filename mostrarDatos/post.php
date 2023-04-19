@@ -52,9 +52,7 @@ $usuarios = UsuarioMysql::listar();
             $post_image = $row['imagen'];
             $post_content = $row['contenido']; //de 0 caracteres a 100
             $post_status = $row['estatus'];
-            $usuario = BDMySql::getConexion()->query("SELECT nombre FROM usuario WHERE idusuario = '{$row['id_usuario']}'");
-            $resultado = $usuario->fetch();
-            $usuario = $resultado['nombre'];
+            $usuario = $row['post_user'];
             ?>
                     <!--<h1 class="page-header">
                         Page Heading<small>Secondary Text</small>

@@ -11,10 +11,10 @@ $id = $_GET['id'];
 $eventos = EventosMysql::listar();
 
 foreach ($eventos as $key => $evento){
-    if($evento->getId_evento() == $id){
+    if($evento->getId_post() == $id){
         EventosMysql::eliminar($id);
     }
 }
-header("location:../mostrarDatos/agenda.php");
+header("location:/ProyectoFP/mostrarDatos/listarPosts.php");
     exit();
 

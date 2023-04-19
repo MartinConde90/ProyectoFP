@@ -40,7 +40,7 @@ include ("sidebar.php");
     if(isset($_SESSION["id"]) && $usuarios[$_SESSION["id"]]->getRol() == 1){
         $post_query_count = BDMySql::getConexion()->prepare("SELECT * FROM posts"); 
     }
-    //SOLO PUBLICADO PARA SUSCRIPTORES
+    //SOLO PUBLICADAS
     else{
         $post_query_count = BDMySql::getConexion()->prepare("SELECT * FROM posts WHERE estatus = 'Published'"); 
     }
@@ -76,9 +76,8 @@ include ("sidebar.php");
             $post_image = $row['imagen'];
             $post_content = substr(strip_tags($row['contenido']),0,100); //de 0 caracteres a 100
             $post_status = $row['estatus'];
-            $usuario = BDMySql::getConexion()->query("SELECT nombre FROM usuario WHERE idusuario = '{$row['id_usuario']}'");
-            $resultado = $usuario->fetch();
-            $usuario = $resultado['nombre'];
+            $usuario = $row['post_user'];
+            
         ?>
                     <!-- <h1><?php echo $count ?></h1> -->
                     <h2>

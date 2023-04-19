@@ -14,7 +14,7 @@ $usuarios = UsuarioMysql::listar();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/ProyectoFP/estilos.css" media="screen" />
-    <title>Document</title>
+    <title>Nombre de la web</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" 
         crossorigin="anonymous">
@@ -33,25 +33,50 @@ $usuarios = UsuarioMysql::listar();
 </head>
 <body>
   <nav class="navbar navbar-dark navbar-expand justify-content-center bg-dark text-light">
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="eventosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Publicaciones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="eventosDropdown">
-          <a class="dropdown-item text-dark" href="/ProyectoFP">Publicaciones</a>
-          <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/eventos.php">Añadir publicaciones</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Usuarios
-        </a>
-        <div class="dropdown-menu text-dark" aria-labelledby="usuariosDropdown">
-          <a class="dropdown-item text-dark" href="/ProyectoFP/mostrarDatos/listarUsuarios.php">Listar Usuarios</a>
-          <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/nuevoUsuario.php">Añadir Usuarios</a>
-        </div>
-      </li>
+  <div class="container d-flex justify-content-center">
+    <h2 class="text-center"><a style="text-decoration: none" href="/ProyectoFP">Nombre de la web</a></h2>
+  </div>
+    <ul class="navbar-nav ml-auto">
+      <?php
+          if(isset($_SESSION["rol"])){
+      ?>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="eventosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Publicaciones
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="eventosDropdown">
+              <a class="dropdown-item text-dark" href="/ProyectoFP">Publicaciones</a>
+              <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/eventos.php">Añadir publicaciones</a>
+
+              <?php
+                if(isset($_SESSION["rol"]) && $_SESSION["rol"] == 1){
+              ?>
+              <a class="dropdown-item text-dark" href="/ProyectoFP/mostrarDatos/listarPosts.php">Editar publicaciones</a>
+              <?php
+                }
+              ?>
+            </div>
+            </li>
+      <?php
+          }
+      ?>
+      <?php
+          if(isset($_SESSION["rol"]) && $_SESSION["rol"] == 1){
+      ?>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuarios
+            </a>
+            <div class="dropdown-menu dropdown-menu-right text-dark" aria-labelledby="usuariosDropdown">
+            <a class="dropdown-item text-dark" href="/ProyectoFP/mostrarDatos/listarUsuarios.php">Listar Usuarios</a>
+            <a class="dropdown-item text-dark" href="/ProyectoFP/añadir/nuevoUsuario.php">Añadir Usuarios</a>
+            </div>
+            </li>
+      <?php
+          }
+      ?>
+          
+        
     </ul>
     
   </nav>

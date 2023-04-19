@@ -3,10 +3,6 @@ require_once(dirname(__FILE__)."/../evento/EventosMysql.php");
 if(session_status() !== PHP_SESSION_ACTIVE){
     session_start(); 
 } 
-if(!isset($_SESSION["id"])){
-    header("location:login.php");
-}
-
 
 $id = $_GET['id'];
 $nombre="";
@@ -17,76 +13,75 @@ $eventoAmodif;
 $eventos = EventosMysql::listar();
 
 foreach ($eventos as $key => $evento){
-    if($evento->getId_evento() == $id){
+    if($evento->getId_post() == $id){
         $eventoAmodif = $evento;
     }
 }
 
 if ($_SERVER["REQUEST_METHOD"]== "POST"){
 
-    if(!$_POST["nombre"]==""){
-        $nombre = ($_POST["nombre"]);
+    if(!$_POST["title"]==""){
+        $post_title = ($_POST["title"]);
     }
-    if(!$_POST["fecha_ini"]==""){
-        $fecha_ini = new DateTime($_POST["fecha_ini"]);
-    }else{
-        $fecha_ini = $eventoAmodif->getFecha_inicio();
-    }
-    if(!$_POST["fecha_fin"]==""){
-        $fecha_fin = new DateTime($_POST["fecha_fin"]);
-        $intervalo = $fecha_ini->diff($fecha_fin);
-        if($intervalo->invert==1){
-            $fecha_fin= null;
-        }   
-    }else{
-        $fecha_fin = $eventoAmodif->getFecha_fin();
-
-        $intervalo = $fecha_ini->diff($fecha_fin);
-        if($intervalo->invert==1){
-            $fecha_fin= null;
-        }
+    if(!$_POST["post_status"]==""){
+        $post_status = ($_POST["post_status"]);
     }
     
+
+    if (isset($_FILES['image']['name']) && $_FILES['image']['name'] != "") {
+        $post_image = ($_FILES['image']['name']);
+        $post_image_temp = $_FILES['image']['tmp_name'];
+        move_uploaded_file($post_image_temp, "../image/$post_image");
+      } else {
+        $post_image = $eventoAmodif->getImagen();
+      }
+    
+    if(!$_POST["post_content"]==""){
+        $post_content = ($_POST["post_content"]);
+    }
        
-    $evento = new EventosMysql($nombre,$fecha_ini,$fecha_fin,$_SESSION["id"],$id);
+    $evento = new EventosMysql($post_title,$post_status,$post_image,$post_content,$eventoAmodif->getFecha(),$eventoAmodif->getNombreUsuario(),$id);
     $evento->modificar($evento);
 
 
-            header("location:../mostrarDatos/agenda.php");
+    header("location:/ProyectoFP/mostrarDatos/listarPosts.php");
 }
-include("../header.php")
+include("../header.php");
+include ("../sidebar.php"); 
 ?>
 
-<section class="intro">
-  <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
-    <div class="mask d-flex justify-content-center align-items-center h-100">
-      <div class="container">
-            <div class="card mask-custom">
-                    <h2>Introduce los nuevos datos del evento</h2>
-                    <form class="d-flex justify-content-center align-items-start mx-auto" action="" method="post">
-                        <div class="form-group">
-                            <label class="text-light" style="margin-left:10px">Nombre Evento </label>
-                            <input class="inpt form-control mx-2" style="width:200px" type="text" name="nombre" id="nombre" value="<?=$eventoAmodif->getNombre();?>">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-light" style="margin-left:10px">Fecha Inicio</label>
-                            <input class="inpt form-control mx-2" style="width:200px"  type="datetime-local" name="fecha_ini" id="fecha_ini" value="<?=$eventoAmodif->getFecha_inicio()->format("d-m-Y T H:i ")?>">
-                        </div>
-                        <div class="form-group">
-                            <label class="text-light" style="margin-left:10px">Fecha Fin</label>
-                            <input class="inpt form-control mx-2" style="width:200px"  type="datetime-local" name="fecha_fin" id="fecha_fin" value="<?=$eventoAmodif->getFecha_fin()->format("d-m-Y T H:i ")?>">
-                        </div>    
-                        <div class="form-group d-flex justify-content-start" style="margin-top:25px">
-                      <div>
-                        <input class="boton" type="submit" value="Modificar">
-                      </div>
-                    </div>      
-                    </form>
-                    </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="container">
+        <form class="addform" action="" method="post" enctype="multipart/form-data">
+        <h2>Nuevos datos de la publicacion</h2>
+          <div class="form-group">
+            <hr>
+            <label for="title">Post Title</label>
+            <input type="text" class="form-control" name="title" value="<?=$eventoAmodif->getTitulo();?>" required>
+            <hr>
+          </div>
+            
+          <select name="post_status" id="">
+            <option value="<?=$eventoAmodif->getStatus();?>">Post Status</option>
+            <option value="Published">Publicar</option>
+            <option value="Draft">Borrador</option>
+          </select>
+  
+          <div class="form-group">
+            <hr>
+            <img width="100" src="/ProyectoFP/image/<?= $eventoAmodif->getImagen();?>" alt="">
+            <label for="title">Post Image</label>
+            <input type="file" class="form-control" name="image">
+            <hr>
+          </div>
 
+          <div class="form-group">
+            <label for="title">Post Content</label>
+            <textarea class="form-control" name="post_content" cols="20" rows="5"  required><?= $eventoAmodif->getContenido();?></textarea>
+            <hr>
+          </div>
+
+          <input class="btn btn-primary" type="submit" value="Publicar">    
+        </form>
+        <?php include "../footer.php"; ?>
 </body>
 </html>
